@@ -180,10 +180,12 @@ set(MORE_ANTS_APPS
   )
 
 foreach(ANTS_APP ${CORE_ANTS_APPS})
-  if (BUILD_SHARED_LIBS)
-    DYNAMIC_ANTS_BUILD(${ANTS_APP} "")
-  else()
-    STATIC_ANTS_BUILD(${ANTS_APP} "")
+  if(ANTS_BUILD_${ANTS_APP})
+      if (BUILD_SHARED_LIBS)
+        DYNAMIC_ANTS_BUILD(${ANTS_APP} "")
+      else()
+        STATIC_ANTS_BUILD(${ANTS_APP} "")
+      endif()
   endif()
 endforeach()
 
